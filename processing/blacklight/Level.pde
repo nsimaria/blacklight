@@ -131,7 +131,7 @@ class Level
   void output (int value)
   {
     //if (this.port != null) UNCOMMENT!!!!
-      //this.port.write (value); UNCOMMENT!!!!
+      //this.por  t.write (value); UNCOMMENT!!!!
 
     //  value = value + increment;
 

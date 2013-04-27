@@ -58,7 +58,9 @@ class Game
     /* Nunchuk off */
 
     Input input = new Input ();
-    input.setup ("/dev/ttyACM0");
+    
+    input.setup ("/dev/tty.usbmodemfa131");
+//    input.setup ("/dev/ttyACM0");
     this.inputs = (Input []) append (this.inputs, input);  
 
     //    this.leds = new Serial(_root_, ports [1], 9600);  
