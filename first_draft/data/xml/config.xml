@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<blight>
+  <screen>
+	  <width>800</width>
+	  <height>600</height>
+	</screen>
+	<font>
+	  <name>agency.vlw</name>
+	  <size>45</size>
+	</font>
+</blight>

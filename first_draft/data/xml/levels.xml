@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<levels>
+  <level>
+	  <name>Aveiro</name>
+		<time>180</time>
+		<enemies>50</enemies>
+		<squad>10</squad>
+		<image>img/aveiro.jpg</image>
+	</level>
+  <level>
+	  <name>Feira</name>
+		<time>180</time>
+		<enemies>100</enemies>
+		<squad>10</squad>
+	</level>
+  <level>
+	  <name>Gaia</name>
+		<time>180</time>
+		<enemies>150</enemies>
+		<squad>10</squad>
+	</level>
+</levels>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<blacklight>
+  <screen>
+	  <width>1024</width>
+	  <height>768</height> 
+		<background>FFcccccc</background>
+		<fill>FFAAAAAA</fill>
+	</screen>
+  
+	<levels>
+	  
+	  <level>
+			<name>First level</name>
+		  <width>20</width>
+      <height>16</height>
+		</level>
+	
+	</levels>
+</blacklight>
