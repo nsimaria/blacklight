@@ -118,7 +118,7 @@ class Game
     this.current.game = this;
     this.current.setup ();
 
-    this.playSoundtrack ();
+    //this.playSoundtrack ();
   }
 
   void draw ()

@@ -27,7 +27,7 @@ PApplet _root_;
 SoftFullScreen _fs_;  
 PFont _bold_;
 PFont _regular_;
-Detector _detector_ = null;
+//Detector _detector_ = null;
 
 Minim _minim_ = null;
 
@@ -48,8 +48,8 @@ void setup ()
   _bold_    = loadFont ("Code-Bold-48.vlw");
   _regular_ = loadFont ("Code-Light-48.vlw");
 
-  _detector_ = new Detector ();
-  _detector_.setup ();
+  //_detector_ = new Detector ();
+  //_detector_.setup ();
 
   _game_ = new Game ();
   _game_.setup ();

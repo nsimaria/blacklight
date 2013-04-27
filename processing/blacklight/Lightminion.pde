@@ -16,12 +16,12 @@ class Lightminion
   
   void setup ()
     {
-    this.detector = _detector_;
+    //this.detector = _detector_;
     }
     
   void draw ()
     {
-    int[] img = this.detector.image ();
+    //int[] img = this.detector.image ();
 
     int w = _game_.width;//this.lightlord.level.battlefield.width;
     int h = _game_.height;//this.lightlord.level.battlefield.height;
@@ -30,7 +30,7 @@ class Lightminion
     
     this.lighted = new ArrayList ();
 
-    for(int y = 0; y < this.detector.height; y += 10)
+   /* for(int y = 0; y < this.detector.height; y += 10)
       { 
       for(int x = 0; x < this.detector.width; x += 10)
         { 
@@ -47,20 +47,19 @@ class Lightminion
           
           int[] l = new int[2];
           
-       //   println (_game_.width + " > " + this.detector.width + " = " +  int (/*_game_.width - */(x * float(_game_.width / this.detector.width))));
+      
           
-          l[0] = int (x * (float (_game_.width) / float(this.detector.width)));/*_game_.width - */
+          l[0] = int (x * (float (_game_.width) / float(this.detector.width)));
           l[1] = int (y * (float (_game_.height) / float(this.detector.height)));
 
           
           this.lighted.add (l);
           
          ellipse  (l[0], l[1], 50, 50);
-        //ellipse  (l[0], l[1], this.lightlord.level.battlefield.videoScale, this.lightlord.level.battlefield.videoScale);
-//          point  (x, y, 0);
+
           }     
         }
-      }
+      }*/
     }
   }
     
