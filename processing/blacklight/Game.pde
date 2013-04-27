@@ -8,7 +8,7 @@ BLACKLIGHT v1.0
 
 class Game
 {
-  XMLElement xml;
+  XML xml;
   int width;
   int height;
   int background;
@@ -37,7 +37,7 @@ class Game
 
   void setup ()
   {
-    this.xml = new XMLElement(_root_, "xml/config.xml");
+    this.xml = loadXML("xml/config.xml");
     this.loadXml (this.xml);
     //    size (this.width, this.height);
 
@@ -150,7 +150,7 @@ class Game
     }
   }
 
-  void loadXml (XMLElement node)
+  void loadXml (XML node)
   {
     println ("Loading Game XML..."); 
     this.width      = int (node.getChild ("screen/width").getContent ());
@@ -158,11 +158,11 @@ class Game
     this.background = unhex (node.getChild ("screen/background").getContent ());
     this.fill       = unhex (node.getChild ("screen/fill").getContent ());
 
-    XMLElement levels_xml = node.getChild ("levels");
+    XML levels_xml = node.getChild ("levels");
 
     for (int i = 0; i < levels_xml.getChildCount (); i++)
     {
-      XMLElement level_xml = levels_xml.getChild (i);
+      XML level_xml = levels_xml.getChild (i);
 
       Level level = new Level ();
       level.game = this;

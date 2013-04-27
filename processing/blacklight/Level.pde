@@ -119,19 +119,19 @@ class Level
     //    this.lightlord.defend ();
   }
 
-  void loadXml (XMLElement node)
+  void loadXml (XML node)
   {
-    this.name       = node.getChild ("name").getContent ();
-    this.width      = int (node.getChild ("width").getContent ());
-    this.height     = int (node.getChild ("height").getContent ());    
+    this.name       = "First Level"; //node.getChild ("name").getContent ();
+    this.width      = 20; //int (node.getChild ("width").getContent ());
+    this.height     = 16;    
 
-    println ("Level " + name + ": " + this.width + "x" + this.height);
+    //println ("Level " + name + ": " + this.width + "x" + this.height);
   }
 
   void output (int value)
   {
-    if (this.port != null)
-      this.port.write (value);
+    //if (this.port != null) UNCOMMENT!!!!
+      //this.port.write (value); UNCOMMENT!!!!
 
     //  value = value + increment;
 
