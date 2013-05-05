@@ -2,7 +2,7 @@ Blacklight
 
 A Arduino and Processing Game Installation
 
-== Processing Libraries ==
+Processing Libraries
 ==========================
   * http://gsvideo.sourceforge.net/#download
   * http://www.superduper.org/processing/fullscreen_api/
