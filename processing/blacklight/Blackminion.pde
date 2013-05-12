@@ -17,6 +17,7 @@ class Blackminion
   boolean jammed = false;
   int timeout = 0;
   int charging = 0;
+  boolean evil = true;
   
   void setup ()
     {
@@ -65,7 +66,12 @@ class Blackminion
 //      _game_.playBlackBomb ();
       }
     
-    fill (1);
+    
+    if (this.evil)
+        fill (1);
+    else
+        fill (255);
+    
     noStroke();
     ellipse (this.x, this.y, this.diameter, this.diameter);
     }
@@ -74,7 +80,7 @@ class Blackminion
     {
       
     Blackmatter matter = new Blackmatter ();
-    
+    matter.evil = this.evil;
     matter.x = this.x;
     matter.y = this.y;
     
@@ -87,17 +93,18 @@ class Blackminion
     {
 //      _game_.playBlackBomb ();
 
-      for (int i = 0; i < 10; i++)
+      for (int i = 0; i < 20; i++)
       {
       Blackmatter matter = new Blackmatter ();
+      matter.evil = this.evil;
     
 //      matter.x = int (random (20, _game_.width - 20));
 //      matter.y = int (random (20, _game_.height - 20));
 
       matter.x = this.x; //int (random (20, _game_.width - 20));
       matter.y = this.y; // int (random (20, _game_.height - 20));
-      matter.vx = random (-5, 5);
-      matter.vy = random (-5, 5);
+      matter.vx = random (-10, 10);
+      matter.vy = random (-10, 10);
 
     
       matter.setup ();

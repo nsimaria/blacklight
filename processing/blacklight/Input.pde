@@ -17,6 +17,7 @@ Input [] _inputs_ = {};
 
 class Input
   {  
+  boolean evil  = true;
   Serial port   = null;
   Buffer buffer = null;
   String name   = null;
@@ -74,7 +75,18 @@ class Input
       final String [] data = split (trim (raw), ' ');
     
     
-      if (data[0].equals ("NK1")) // is main input!
+      if (data[0].equals ("NK1") && this.evil) // is main input!
+        {
+        this.jX = int (data [1]);
+        this.jY = int (data [2]);
+        this.aX = int (data [3]);
+        this.aY = int (data [4]);
+        this.aZ = int (data [5]);
+        this.bZ = int (data [6]);
+        this.bC = int (data [7]);
+        }
+
+      if (data[0].equals ("NK2") && !this.evil) // is main input!
         {
         this.jX = int (data [1]);
         this.jY = int (data [2]);
@@ -137,22 +149,34 @@ void serialEvent (Serial port)
 void keyPressed() 
   {
 //    println (keyCode) ;
-    String data =  "NK1 0 0 0 0 0 0 0";
-    
-    switch (keyCode)
-      {
-      case 37: data =  "NK1 -140 0 0 0 0 0 0"; break; //left
-      case 38: data =  "NK1 0 240 0 0 0 0 0"; break; //left
-      case 39: data =  "NK1 240 0 0 0 0 0 0"; break; //left
-      case 40: data =  "NK1 0 -240 0 0 0 0 0"; break; //left
-      case 32: data = "NK1 0 0 0 0 0 1 0"; break; //left
+    boolean evil = true;
+    String data =  null;
+      switch (keyCode)
+        {
+        case 37: data = "NK1 -140 0 0 0 0 0 0"; evil = true; break; //left arrow goes left
+        case 38: data = "NK1 0 240 0 0 0 0 0"; evil = true;break;  //up arrow goes up
+        case 39: data = "NK1 240 0 0 0 0 0 0"; evil = true;break;  //right arrow goes right
+        case 40: data = "NK1 0 -240 0 0 0 0 0"; evil = true;break; //down arrow goes down
+        case 32: data = "NK1 0 0 0 0 0 1 0"; evil = true;break;    //space fires
+
+        case 65: data = "NK2 -140 0 0 0 0 0 0"; evil = false;break; //a goes left
+        case 87: data = "NK2 0 240 0 0 0 0 0"; evil = false;break;  //w goes up
+        case 68: data = "NK2 240 0 0 0 0 0 0";evil = false; break;  //d goes right
+        case 83: data = "NK2 0 -240 0 0 0 0 0"; evil = false;break; //s goes down
+        case 86: data = "NK2 0 0 0 0 0 1 0"; evil = false;break;    //v fires
       }
+
+   
     
-  
-    for (int i = 0; i < _inputs_.length; i++)
+    if ((data != null) && (_inputs_.length == 2))
     {
-      _inputs_ [i].setData (data);
-    }  
+        if (evil)
+            _inputs_[0].setData (data);
+        else
+            _inputs_[1].setData (data);
+    }
+  
+//    for (int i = 0; i < _inputs_.length; i++)
   
   return;
 
@@ -161,12 +185,18 @@ void keyPressed()
 void keyReleased() 
   {
 //    println (keyCode) ;
-    String data =  "NK1 0 0 0 0 0 0 0";
-  
-    for (int i = 0; i < _inputs_.length; i++)
+    //String data =  "NK1 0 0 0 0 0 0 0";
+
+    if (_inputs_.length == 2)
     {
-      _inputs_ [i].setData (data);
-    }  
+            _inputs_[0].setData ("NK1 0 0 0 0 0 0 0");
+            _inputs_[1].setData ("NK2 0 0 0 0 0 0 0");
+    }
+  //
+  //  for (int i = 0; i < _inputs_.length; i++)
+  //  {
+  //    _inputs_ [i].setData (data);
+  //  }  
   
   return;
 

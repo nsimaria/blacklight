@@ -1,10 +1,3 @@
-/*
-BLACKLIGHT v1.0
-Project made for Mestrado de Comunicação Multimédia, Ramo Multimédia Interactivo at Departamento de Comunicação e Arte at Universidade de Aveiro.
-
-Author: Nuno Simaria - nsimaria@ua.pt - #23652
-Other workgroup members: Ana Filipa Lacerda, Daniela Rei, Renato Costa, Julien Cuenin
-*/
 
 class Blacklord
   {
@@ -13,6 +6,7 @@ class Blacklord
   ArrayList blackmatter = null;
 //  Blackmatter [] blackmatter = {};
   int power = 0;
+  boolean evil = true; 
 
   
   void setup ()
@@ -21,8 +15,22 @@ class Blacklord
     //e criar um Blackminion por cada nunchuk
     this.blackmatter = new ArrayList ();
     Blackminion minion1 = new Blackminion ();
+
     minion1.blacklord = this;
-    minion1.input = (this.level.game.inputs.length != 0) ? this.level.game.inputs [0] : new Input ();
+    minion1.evil = this.evil;
+    
+    if (this.level.game.inputs.length == 2)
+    {
+        if (this.evil)
+            minion1.input = this.level.game.inputs [0];
+        else
+            minion1.input = this.level.game.inputs [1];
+    }
+    else
+    {
+        minion1.input = new Input ();
+    }
+    //minion1.input = (this.level.game.inputs.length == 2) ? this.level.game.inputs [0] : new Input ();
     
     this.minions = (Blackminion []) append (this.minions, minion1);
     

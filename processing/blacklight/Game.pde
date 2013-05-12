@@ -1,23 +1,19 @@
-/*
-BLACKLIGHT v1.0
- Project made for Mestrado de Comunicação Multimédia, Ramo Multimédia Interactivo at Departamento de Comunicação e Arte at Universidade de Aveiro.
- 
- Author: Nuno Simaria - nsimaria@ua.pt - #23652
- Other workgroup members: Ana Filipa Lacerda, Daniela Rei, Renato Costa, Julien Cuenin
- */
+// Game class
 
 class Game
 {
   XML xml;
+
   int width;
   int height;
+
   int background;
   int fill;
-  Input[] inputs = {
-  };
-  Level[] levels = {
-  };
+
+  Input[] inputs = {};
+  Level[] levels = {};
   Level current = null;
+
   Intro intro = null;
   Logo logo = null;
   Winner winner = null;
@@ -27,11 +23,11 @@ class Game
   AudioPlayer soundtrack = null;
   AudioPlayer blackwins = null;
   AudioPlayer lightwins = null;
+
   Serial leds = null;
 
   int blackBattles = 0;
   int lightBattles = 0;
-
 
   PImage bgimage = null;
 
@@ -45,26 +41,29 @@ class Game
     fill (this.fill);
     noStroke ();
 
+    // getting list of active serial ports
     String [] ports = Serial.list ();
-
     println ("going for ports: " + ports.length);
 
-    /* Nunchuk on */
     for (int i = 0; i < ports.length; i++)
     {
-
       println ("ports found: " + ports [i]);
     }
-    /* Nunchuk off */
 
-    Input input = new Input ();
-    
-    input.setup ("/dev/tty.usbmodemfa131");
-//    input.setup ("/dev/ttyACM0");
-    this.inputs = (Input []) append (this.inputs, input);  
+    Input inputblack = new Input ();
+    inputblack.setup ("/dev/tty.usbmodemfa121");
+    inputblack.evil = true;
+    this.inputs = (Input []) append (this.inputs, inputblack);  
 
-    //    this.leds = new Serial(_root_, ports [1], 9600);  
-    this.leds = new Serial(_root_, "/dev/ttyACM1", 9600);  
+    Input inputwhite = new Input ();
+    inputwhite.setup ("/dev/tty.usbmodemfa131");
+    inputwhite.evil = false;
+    this.inputs = (Input []) append (this.inputs, inputwhite);  
+
+    this.reset ();
+
+    // this.leds = new Serial(_root_, ports [1], 9600);  
+    // this.leds = new Serial(_root_, "/dev/ttyACM1", 9600);  
 
     /*    
      Input input = new Input ();
@@ -84,7 +83,6 @@ class Game
      this.leds = new Serial(_root_, ports [1], 9600);  
      this.leds = new Serial(_root_, "/dev/ttyACM0", 9600);  
      }*/
-    this.reset ();
 
 
     //    this.current = this.levels [0];
@@ -93,6 +91,7 @@ class Game
     //    this.current.setup ();
     //this.bgimage = loadImage("images/egypt.png");
   }
+
   void reset ()
   {
 //    this.intro = new Intro ();
@@ -108,7 +107,6 @@ class Game
     this.logo = new Logo ();
     this.logo.setup ();
 
-
     Level level = new Level ();
     level.name = this.levels [0].name;
     level.width = this.levels [0].width;
@@ -118,7 +116,7 @@ class Game
     this.current.game = this;
     this.current.setup ();
 
-    //this.playSoundtrack ();
+    this.playSoundtrack ();
   }
 
   void draw ()
@@ -147,7 +145,7 @@ class Game
     {
       if (this.current != null)
         this.logo.draw (this.current.timer, this.current.battlefield.whites, this.current.battlefield.blacks);
-      //else if (this.winner != null)
+       //else if (this.winner != null)
       //this.logo.draw ((this.winner.team == 0) ? 0 : 255, 0, 0);
     }
   }

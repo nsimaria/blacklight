@@ -1,10 +1,4 @@
-/*
-BLACKLIGHT v1.0
-Project made for Mestrado de Comunicação Multimédia, Ramo Multimédia Interactivo at Departamento de Comunicação e Arte at Universidade de Aveiro.
 
-Author: Nuno Simaria - nsimaria@ua.pt - #23652
-Other workgroup members: Ana Filipa Lacerda, Daniela Rei, Renato Costa, Julien Cuenin
-*/
 
 
 class Blackmatter
@@ -15,6 +9,7 @@ class Blackmatter
   boolean dead = false;
   float vx = 0;
   float vy = 0;
+  boolean evil = true;
   
   void setup ()
     {
@@ -25,8 +20,12 @@ class Blackmatter
     {
     if (this.dead)
       return;
+
+    if (this.evil)
+        fill (10, 50);
+    else
+        fill (255, 50);
       
-    fill (10, 50);
     noStroke ();
 
     ellipse (this.x, this.y, this.diameter, this.diameter);

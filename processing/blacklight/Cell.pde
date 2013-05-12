@@ -77,9 +77,10 @@ class Cell {
     // if is not between animation draw cell and circle color
     if ( this.animating == false ) {
       if (this.side == 0)
-        fill (this.fillWhite, this.opacity + 70);
+//        fill (this.fillWhite, this.opacity + 70);
+        fill (lifeBar, this.opacity + 80);
       else
-        fill(lifeBar, this.opacity + 20 ) ;
+        fill(lifeBar, this.opacity + 10 ) ;
       
       rect ( posX, posY, area, area );
       

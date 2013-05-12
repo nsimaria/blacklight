@@ -11,7 +11,7 @@ class Level
   Game game = null;
   Battlefield battlefield = null;
   Blacklord      blacklord   = null;
-  Lightlord      lightlord   = null;
+  Blacklord      lightlord   = null;
   Scoreboard scoreboard = null;
   int timer = 0;
   
@@ -37,10 +37,11 @@ class Level
       return;
     }  
 
-    this.timer = 10000;
+    this.timer = 2000;
     
     this.battlefield = new Battlefield (1024, 768);
-    this.lightlord = new Lightlord ();
+    this.lightlord = new Blacklord ();
+    this.lightlord.evil = false;
     this.blacklord = new Blacklord ();
     this.scoreboard = new Scoreboard ();
     
@@ -81,7 +82,7 @@ class Level
     this.lightlord.draw ();
 
 
-    for (int i = 0; i < this.lightlord.minions [0].lighted.size (); i++)
+/*    for (int i = 0; i < this.lightlord.minions [0].lighted.size (); i++)
     {
       int[] coords = (int []) this.lightlord.minions [0].lighted.get (i);
 
@@ -89,6 +90,17 @@ class Level
       //println ("balancing");
       cell.update(0);
     }
+*/
+    for (int i = 0; i < this.lightlord.blackmatter.size (); i++)
+    {
+      Blackmatter b = (Blackmatter) this.lightlord.blackmatter.get (i);      
+      if (b.check ())
+        continue;
+        
+      Cell cell = this.battlefield.getCell (b.x, b.y);
+      cell.update(0);
+    }
+
 
     for (int j = 0; j < this.blacklord.blackmatter.size (); j++)
     {
